@@ -4,7 +4,7 @@
 
 [![npm version](https://badgen.net/npm/v/@nexus-navigators/aws-data-faker)](https://www.npmjs.com/package/@nexus-navigators/aws-data-faker)
 [![npm downloads](https://badgen.net/npm/dm/@nexus-navigators/aws-data-faker)](https://www.npmjs.com/package/@nexus-navigators/aws-data-faker)
-[![Continuous Integration](https://github.com/NexusNavigators/aws-data-faker/actions/workflows/ci.yml/badge.svg)](https://github.com/NexusNavigators/aws-data-faker/actions/workflows/ci.yml)
+[![Continuous Integration](https://github.com/NexusNavigators/aws-data-faker/actions/workflows/ci.yaml/badge.svg)](https://github.com/NexusNavigators/aws-data-faker/actions/workflows/ci.yaml)
 [![codecov](https://codecov.io/github/NexusNavigators/aws-data-faker/graph/badge.svg?token=3H6CVWAYSY)](https://codecov.io/github/NexusNavigators/aws-data-faker)
 
 ## Releasing
