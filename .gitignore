@@ -1,0 +1,15 @@
+.npmrc
+/.vscode/
+/coverage/
+/deploy/terraform/build/
+node_modules/
+/yarn-error.log
+.idea
+/.nyc_output
+
+/src/**/*.js
+/src/**/*.mjs
+/src/**/*.d.ts
+/test/**/*.js
+/test/**/*.mjs
+/test/**/*.d.ts

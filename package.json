@@ -1,0 +1,147 @@
+{
+  "name": "@nexus-navigators/aws-data-faker",
+  "version": "0.0.0",
+  "description": "Unit test data generator for AWS SDK objects",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./src/index.mjs",
+      "require": "./src/index.js"
+    },
+    "./account": {
+      "types": "./src/account/index.d.ts",
+      "import": "./src/account/index.mjs",
+      "require": "./src/account/index.js"
+    },
+    "./apiGateway": {
+      "types": "./src/apiGateway/index.d.ts",
+      "import": "./src/apiGateway/index.mjs",
+      "require": "./src/apiGateway/index.js"
+    },
+    "./cloudWatch": {
+      "types": "./src/cloudWatch/index.d.ts",
+      "import": "./src/cloudWatch/index.mjs",
+      "require": "./src/cloudWatch/index.js"
+    },
+    "./dynamodb": {
+      "types": "./src/dynamodb/index.d.ts",
+      "import": "./src/dynamodb/index.mjs",
+      "require": "./src/dynamodb/index.js"
+    },
+    "./lambda": {
+      "types": "./src/lambda/index.d.ts",
+      "import": "./src/lambda/index.mjs",
+      "require": "./src/lambda/index.js"
+    },
+    "./kinesis": {
+      "types": "./src/kinesis/index.d.ts",
+      "import": "./src/kinesis/index.mjs",
+      "require": "./src/kinesis/index.js"
+    },
+    "./s3": {
+      "types": "./src/s3/index.d.ts",
+      "import": "./src/s3/index.mjs",
+      "require": "./src/s3/index.js"
+    },
+    "./sns": {
+      "types": "./src/sns/index.d.ts",
+      "import": "./src/sns/index.mjs",
+      "require": "./src/sns/index.js"
+    },
+    "./sqs": {
+      "types": "./src/sqs/index.d.ts",
+      "import": "./src/sqs/index.mjs",
+      "require": "./src/sqs/index.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "account": [
+        "./src/account/index.d.ts"
+      ],
+      "apiGateway": [
+        "./src/apiGateway/index.d.ts"
+      ],
+      "cloudWatch": [
+        "./src/cloudWatch/index.d.ts"
+      ],
+      "dynamodb": [
+        "./src/dynamodb/index.d.ts"
+      ],
+      "kinesis": [
+        "./src/kinesis/index.d.ts"
+      ],
+      "lambda": [
+        "./src/lambda/index.d.ts"
+      ],
+      "s3": [
+        "./src/s3/index.d.ts"
+      ],
+      "sns": [
+        "./src/sns/index.d.ts"
+      ],
+      "sqs": [
+        "./src/sqs/index.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "src/**/*.js",
+    "src/**/*.mjs",
+    "src/**/*.d.ts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NexusNavigators/aws-data-faker.git"
+  },
+  "author": "David Tanner <david.tanner@nexus-navigators.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "apiGateway",
+    "aws-sdk",
+    "cloudWatch",
+    "cognito",
+    "dynamodb",
+    "dynamodbstreams",
+    "aws-lambda"
+  ],
+  "scripts": {
+    "prepublishOnly": "npx tsx esBuild.mts && npx tsc --project tsconfig.build.json",
+    "lint": "eslint . --cache",
+    "postlint": "tsc",
+    "pretest": "npm run lint",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.499.0",
+    "@aws-sdk/util-arn-parser": "^3.495.0",
+    "@aws-sdk/util-dynamodb": "^3.499.0",
+    "@types/aws-lambda": "^8.10.143"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.9.0",
+    "@stylistic/eslint-plugin": "^2.6.4",
+    "@types/node": "^22.4.2",
+    "@vitest/coverage-v8": "^2.0.5",
+    "conventional-changelog-conventionalcommits": "^8.0.0",
+    "esbuild": "^0.23.1",
+    "eslint": "^9.9.0",
+    "globals": "^15.9.0",
+    "semantic-release": "^24.1.0",
+    "tsx": "^4.17.0",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.2.0",
+    "vitest": "^2.0.5"
+  },
+  "peerDependencies": {
+    "@types/node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
