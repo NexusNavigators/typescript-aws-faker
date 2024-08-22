@@ -1,5 +1,4 @@
 import { randomUUID } from 'crypto'
-import { describe, test, expect } from 'vitest'
 import {
   createApiGatewayProxyEventV2,
   createAPIGatewayProxyEventV2RequestContextHttp,

@@ -26,5 +26,6 @@ export default defineConfig({
     hookTimeout: testTimeout,
     teardownTimeout: testTimeout,
     pool: 'forks',
+    globals: true,
   },
 })

@@ -1,7 +1,11 @@
 import { randomUUID } from 'crypto'
-import { describe, test, expect } from 'vitest'
 
-import { createRecordBucket, createRecordObject, createRecord, createLambdaEventRecord } from '../../src/s3/event'
+import {
+  createRecordBucket,
+  createRecordObject,
+  createRecord,
+  createLambdaEventRecord,
+} from '../../src/s3/event'
 
 describe('createRecordBucket', () => {
   test('will set defaults', () => {
@@ -17,18 +21,19 @@ describe('createRecordBucket', () => {
 
   test('can override defaults', () => {
     const name = randomUUID()
-    const arn = randomUUID()
+
     const ownerIdentity = {
       principalId: randomUUID(),
     }
+
     expect(createRecordBucket({
       name,
       ownerIdentity,
-      arn,
+      arn: { partition: 'aws-us-gov' },
     })).toStrictEqual({
       name,
       ownerIdentity,
-      arn,
+      arn: `arn:aws-us-gov:s3:::${name}`,
     })
   })
 })
@@ -72,7 +77,10 @@ describe('createS3Record', () => {
     const bucket = createRecordBucket({ name: randomUUID() })
     const object = createRecordObject({ key: randomUUID() })
     expect(createRecord({
-      bucket,
+      bucket: {
+        ...bucket,
+        arn: undefined,
+      },
       object,
     })).toStrictEqual({
       s3SchemaVersion: expect.any(String),
@@ -90,7 +98,10 @@ describe('createS3Record', () => {
     expect(createRecord({
       s3SchemaVersion,
       configurationId,
-      bucket,
+      bucket: {
+        ...bucket,
+        arn: undefined,
+      },
       object,
     })).toStrictEqual({
       s3SchemaVersion,
@@ -104,11 +115,17 @@ describe('createS3Record', () => {
 describe('createLambdaEventRecord', () => {
   test('will set defaults', () => {
     const s3 = createRecord({
-      bucket: createRecordBucket({ name: randomUUID() }),
-      object: createRecordObject({ key: randomUUID() }),
+      bucket: { name: randomUUID() },
+      object: { key: randomUUID() },
     })
     expect(createLambdaEventRecord({
-      s3,
+      s3: {
+        ...s3,
+        bucket: {
+          ...s3.bucket,
+          arn: undefined,
+        },
+      },
     })).toStrictEqual({
       s3,
       eventVersion: expect.any(String),
@@ -132,8 +149,8 @@ describe('createLambdaEventRecord', () => {
 
   test('can override defaults', () => {
     const s3 = createRecord({
-      bucket: createRecordBucket({ name: randomUUID() }),
-      object: createRecordObject({ key: randomUUID() }),
+      bucket: { name: randomUUID() },
+      object: { key: randomUUID() },
     })
     const eventVersion = randomUUID()
     const awsRegion = randomUUID()
@@ -150,7 +167,13 @@ describe('createLambdaEventRecord', () => {
     }
 
     expect(createLambdaEventRecord({
-      s3,
+      s3: {
+        ...s3,
+        bucket: {
+          ...s3.bucket,
+          arn: undefined,
+        },
+      },
       eventVersion,
       awsRegion,
       eventTime,

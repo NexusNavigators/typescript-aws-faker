@@ -20,8 +20,7 @@ const generateExpectedPayload = (
   let data = rawData
   if (typeof data === 'string') {
     data = rawData
-  }
-  else {
+  } else {
     data = Buffer.from(JSON.stringify(data)).toString('base64')
   }
   return {

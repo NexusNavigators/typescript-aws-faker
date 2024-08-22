@@ -2,8 +2,9 @@ import { randomUUID } from 'crypto'
 import { DynamoDBRecord } from 'aws-lambda'
 import { AttributeValue, StreamRecord } from 'aws-lambda/trigger/dynamodb-stream'
 
-import { marshalItem } from './index'
 import { marshallOptions } from '@aws-sdk/util-dynamodb'
+import { buildARNString, PartialServiceArn } from '../account'
+import { marshalItem } from './marshaller'
 
 export interface CustomStreamRecord<
   KeysType extends Record<string, any>,
@@ -47,10 +48,14 @@ export const createCustomStreamRecord = <
   options: marshallOptions = { removeUndefinedValues: true },
 ): StreamRecord => createStreamRecord({
   ...streamRecord,
-  Keys: marshalItem(Keys, options) as { [key: string]: AttributeValue },
-  NewImage: marshalItem(NewImage, options) as { [key: string]: AttributeValue },
-  OldImage: marshalItem(OldImage, options) as { [key: string]: AttributeValue },
+  Keys: Keys && marshalItem(Keys, options) as { [key: string]: AttributeValue },
+  NewImage: NewImage && marshalItem(NewImage, options) as { [key: string]: AttributeValue },
+  OldImage: OldImage && marshalItem(OldImage, options) as { [key: string]: AttributeValue },
 })
+
+export type PartialDynamoDBRecord = Omit<Partial<DynamoDBRecord>, 'eventSource' | 'eventSourceARN'> & {
+  eventSourceARN?: PartialServiceArn
+}
 
 export const createDynamoDBRecord = ({
   awsRegion = 'us-east-1',
@@ -60,13 +65,13 @@ export const createDynamoDBRecord = ({
   eventSourceARN,
   eventVersion = '1.1',
   userIdentity,
-}: Partial<Omit<DynamoDBRecord, 'eventSource'>> = {}): DynamoDBRecord => ({
+}: PartialDynamoDBRecord = {}): DynamoDBRecord => ({
   awsRegion,
   eventSource: 'aws:dynamodb',
   dynamodb: createStreamRecord(dynamodb),
   eventID,
   eventName,
-  eventSourceARN,
+  eventSourceARN: eventSourceARN && buildARNString({ ...eventSourceARN, service: 'dynamodb' }),
   eventVersion,
   userIdentity,
 })

@@ -1,7 +1,7 @@
-import * as index from '../../src/sqs'
+import * as index from '../../src/kinesis'
 
 test('exports objects', () => {
   expect(index).toStrictEqual(expect.objectContaining({
-    event: expect.any(Object),
+    stream: expect.any(Object),
   }))
 })

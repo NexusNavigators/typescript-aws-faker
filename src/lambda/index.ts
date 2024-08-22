@@ -1,1 +1,1 @@
-export * as context from './context.ts'
+export * as context from './context'

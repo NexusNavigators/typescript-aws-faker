@@ -6,6 +6,7 @@ node_modules/
 /yarn-error.log
 .idea
 /.nyc_output
+.eslintcache
 
 /src/**/*.js
 /src/**/*.mjs

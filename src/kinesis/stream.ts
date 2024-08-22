@@ -1,8 +1,10 @@
 import { randomUUID } from 'crypto'
-import { KinesisStreamEvent, KinesisStreamRecord } from 'aws-lambda'
-import { KinesisStreamRecordPayload } from 'aws-lambda/trigger/kinesis-stream'
-import { buildARNString } from '../account'
-import { ARN } from '@aws-sdk/util-arn-parser'
+import {
+  KinesisStreamEvent,
+  KinesisStreamRecord,
+  KinesisStreamRecordPayload,
+} from 'aws-lambda'
+import { buildARNString, PartialServiceArn } from '../account'
 
 export type KinesisDataType = string | any
 
@@ -14,7 +16,7 @@ export interface PartialKinesisStreamRecordPayload<T = KinesisDataType>
 export interface PartialKinesisStreamRecord<T = KinesisDataType>
   extends Partial<Omit<KinesisStreamRecord, 'kinesis' | 'eventSource' | 'eventName' | 'eventSourceARN'>> {
   kinesis?: PartialKinesisStreamRecordPayload<T>
-  eventSource?: Partial<Omit<ARN, 'service'>>
+  eventSource?: PartialServiceArn
 }
 
 export const createKinesisStreamRecordPayload = <T = KinesisDataType>(
@@ -29,8 +31,7 @@ export const createKinesisStreamRecordPayload = <T = KinesisDataType>(
   let data: string
   if (typeof rawData === 'string') {
     data = rawData
-  }
-  else {
+  } else {
     data = Buffer.from(JSON.stringify(rawData ?? {})).toString('base64')
   }
   return {

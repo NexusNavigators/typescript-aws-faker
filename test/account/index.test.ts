@@ -1,7 +1,7 @@
-import { validate } from '@aws-sdk/util-arn-parser'
+import { ARN, validate, build } from '@aws-sdk/util-arn-parser'
 import { randomUUID } from 'crypto'
 import { describe, test, expect } from 'vitest'
-import { createAccountId, createARN, buildARNString } from '../../src/account'
+import { createAccountId, createARN, buildARNString, parseArnString } from '../../src/account'
 
 describe('createAccountId', () => {
   test('createAccountId will create a valid accountId', () => {
@@ -13,10 +13,10 @@ describe('createARN', () => {
   test('will provide default values', () => {
     expect(createARN()).toStrictEqual({
       partition: 'aws',
-      service: 'unknown',
-      region: 'us-east-1',
-      accountId: expect.stringMatching(/[1-9][0-9]{11}/),
-      resource: 'unknown',
+      service: '',
+      region: '',
+      accountId: '',
+      resource: '',
     })
   })
 
@@ -55,5 +55,19 @@ describe('buildARNString', () => {
     },
   ])('%# will create an ARN', (input) => {
     expect(() => validate(buildARNString(input))).not.toThrow()
+  })
+})
+
+describe('parseArnString', () => {
+  test('will parse the ARN string', () => {
+    const expected: ARN = {
+      partition: randomUUID(),
+      service: randomUUID(),
+      region: randomUUID(),
+      accountId: randomUUID(),
+      resource: randomUUID(),
+    }
+    const asString = build(expected)
+    expect(parseArnString(asString)).toStrictEqual(expected)
   })
 })

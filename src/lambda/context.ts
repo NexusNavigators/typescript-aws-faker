@@ -1,7 +1,11 @@
-import { ClientContext, ClientContextClient, ClientContextEnv, Context } from 'aws-lambda'
+import {
+  ClientContext,
+  ClientContextClient,
+  ClientContextEnv,
+  Context,
+} from 'aws-lambda'
 import { randomUUID } from 'crypto'
-import { ARN } from '@aws-sdk/util-arn-parser'
-import { buildARNString } from '../account'
+import { buildARNString, PartialServiceArn } from '../account'
 
 export const createClientContextClient = (
   {
@@ -54,10 +58,9 @@ export const createClientContext = (
   env: createClientContextEnv(env),
 })
 
-export type PartialLambdaArn = Partial<Omit<ARN, 'service'>>
 export type PartialContext =
   Partial<Omit<Context, 'invokedFunctionArn'>>
-  & { invokedFunctionArn?: PartialLambdaArn }
+  & { invokedFunctionArn?: PartialServiceArn }
 
 export const createContext = (
   {
@@ -80,7 +83,7 @@ export const createContext = (
   callbackWaitsForEmptyEventLoop,
   functionName,
   functionVersion,
-  invokedFunctionArn: buildARNString({ service: 'lambda', ...invokedFunctionArn }),
+  invokedFunctionArn: buildARNString({ ...invokedFunctionArn, service: 'lambda' }),
   memoryLimitInMB,
   awsRequestId,
   logGroupName,

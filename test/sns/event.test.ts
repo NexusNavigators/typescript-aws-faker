@@ -1,10 +1,8 @@
 import { randomUUID } from 'crypto'
 import { event } from '../../src/sns'
 import { SNSMessage } from 'aws-lambda/trigger/sns'
-import { PartialSnsArn } from '../../src/sns/event'
 import { ARN } from '@aws-sdk/util-arn-parser'
-import { buildARNString } from '../../src/account'
-import { describe, test, expect } from 'vitest'
+import { buildARNString, PartialServiceArn } from '../../src/account'
 
 const { createSnsMessage, createSNSEventRecord } = event
 
@@ -19,7 +17,7 @@ const message = { [randomUUID()]: randomUUID() }
 
 const snsMessage: Omit<SNSMessage, 'Message' | 'TopicArn'> & {
   Message?: object
-  TopicArn?: PartialSnsArn
+  TopicArn?: PartialServiceArn
 } = {
   SignatureVersion: '1',
   Timestamp: new Date().toISOString(),
