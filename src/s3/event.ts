@@ -1,5 +1,6 @@
 import { randomUUID } from 'crypto'
 import { S3EventRecord } from 'aws-lambda'
+import { buildARNString, PartialServiceArn } from '../account'
 
 export type S3RecordEventType = 'TestEvent'
   | 'ObjectCreated:Put'
@@ -20,7 +21,10 @@ export type S3Record = S3EventRecord['s3']
 export type S3RecordBucket = S3Record['bucket']
 export type S3RecordObject = S3Record['object']
 
-export type PartialS3RecordBucket = Partial<Omit<S3RecordBucket, 'name'>> & Pick<S3RecordBucket, 'name'>
+export type PartialS3RecordBucket = Partial<Omit<S3RecordBucket, 'name' | 'arn' >> & Pick<S3RecordBucket, 'name'> & {
+  arn?: Pick<PartialServiceArn, 'partition'>
+}
+
 export type PartialS3RecordObject = Partial<Omit<S3RecordObject, 'key'>> & Pick<S3RecordObject, 'key'>
 export interface PartialS3Record extends Partial<Omit<S3Record, 'bucket' | 'object'>> {
   bucket: PartialS3RecordBucket
@@ -38,12 +42,12 @@ export const createRecordBucket = (
     ownerIdentity = {
       principalId: randomUUID(),
     },
-    arn = `arn:aws:s3:::${name}`,
+    arn: { partition = 'aws' } = { },
   }: PartialS3RecordBucket,
 ): S3RecordBucket => ({
   name,
   ownerIdentity,
-  arn,
+  arn: buildARNString({ partition, service: 's3', resource: name }),
 })
 
 export const createRecordObject = (
@@ -95,9 +99,10 @@ export const createLambdaEventRecord = (
     s3,
     glacierEventData,
   }: PartialS3EventRecord,
+  partition = 'aws',
 ): S3EventRecord => ({
   eventVersion,
-  eventSource: 'aws:s3',
+  eventSource: `${partition}:s3`,
   awsRegion,
   eventTime,
   eventName,

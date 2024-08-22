@@ -63,7 +63,7 @@ describe('createSQSRecord', () => {
       receiptHandle: expect.any(String),
       awsRegion: 'us-east-1',
       eventSource: 'aws:sqs',
-      eventSourceARN: expect.stringMatching(/arn:aws:sqs:us-east-1:[0-9]{12}:some-queue-name/),
+      eventSourceARN: expect.stringMatching(/arn:aws:sqs:us-east-1::some-queue-name/),
       body,
       md5OfBody: createHash('md5').update(body).digest('hex'),
       attributes: {
@@ -110,7 +110,7 @@ describe('createSQSRecord', () => {
       receiptHandle,
       attributes,
       messageAttributes,
-      eventSourceARN: buildARNString({ resource, service: 'sqs', accountId }),
+      eventSourceARN: buildARNString({ resource, service: 'sqs', accountId, region: 'us-east-1' }),
       awsRegion,
       body,
       md5OfBody: createHash('md5').update(body).digest('hex'),

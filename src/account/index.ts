@@ -5,13 +5,15 @@ export const createAccountId = () => `${randomInt(1e11, 1e12)}`
 
 export type PartialArn = Partial<ARN>
 
+export type PartialServiceArn = Omit<PartialArn, 'service'>
+
 export const createARN = (
   {
     partition = 'aws',
-    service = 'unknown',
-    region = 'us-east-1',
-    accountId = createAccountId(),
-    resource = 'unknown',
+    service = '',
+    region = '',
+    accountId = '',
+    resource = '',
   }: PartialArn = {},
 ): ARN => ({
   partition,

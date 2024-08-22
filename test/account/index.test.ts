@@ -13,10 +13,10 @@ describe('createARN', () => {
   test('will provide default values', () => {
     expect(createARN()).toStrictEqual({
       partition: 'aws',
-      service: 'unknown',
-      region: 'us-east-1',
-      accountId: expect.stringMatching(/[1-9][0-9]{11}/),
-      resource: 'unknown',
+      service: '',
+      region: '',
+      accountId: '',
+      resource: '',
     })
   })
 

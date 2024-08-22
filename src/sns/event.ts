@@ -2,19 +2,16 @@ import { randomUUID } from 'crypto'
 import { SNSEventRecord } from 'aws-lambda'
 import { SNSMessage } from 'aws-lambda/trigger/sns'
 
-import { ARN } from '@aws-sdk/util-arn-parser'
-import { buildARNString } from '../account'
-
-export type PartialSnsArn = Omit<Partial<ARN>, 'service'>
+import { buildARNString, PartialServiceArn } from '../account'
 
 export type PartialSNSMessage = Omit<Partial<SNSMessage>, 'Message' | 'TopicArn'> & {
-  Message?: any
-  TopicArn?: PartialSnsArn
+  Message?: string | object
+  TopicArn?: PartialServiceArn
 }
 
 export type PartialSNSEventRecord = Omit<Partial<SNSEventRecord>, 'Sns' | 'EventSubscriptionArn' | 'EventSource'> & {
   Sns?: PartialSNSMessage
-  EventSubscriptionArn?: PartialSnsArn
+  EventSubscriptionArn?: PartialServiceArn
 }
 
 export const createSnsMessage = (

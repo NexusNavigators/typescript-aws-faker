@@ -1,4 +1,5 @@
 import { randomUUID } from 'crypto'
+import { buildARNString, createAccountId, PartialServiceArn } from '../../src/account'
 import {
   createStreamRecord,
   createDynamoDBRecord, createCustomStreamRecord,
@@ -114,6 +115,12 @@ describe('createDynamoDBRecord', () => {
     const eventID = randomUUID()
     const eventName: DynamoDBRecord['eventName'] = 'REMOVE'
     const eventVersion = '2.3'
+    const eventSourceARN: PartialServiceArn = {
+      partition: 'aws-us-gov',
+      region: 'us-west-1',
+      resource: randomUUID(),
+      accountId: createAccountId(),
+    }
     expect(createDynamoDBRecord({
       awsRegion,
       eventID,
@@ -123,12 +130,13 @@ describe('createDynamoDBRecord', () => {
         ApproximateCreationDateTime,
         StreamViewType,
       },
+      eventSourceARN,
     })).toStrictEqual({
       awsRegion,
       eventSource: 'aws:dynamodb',
       eventID,
       eventName,
-      eventSourceARN: undefined,
+      eventSourceARN: buildARNString({ ...eventSourceARN, service: 'dynamodb' }),
       eventVersion,
       userIdentity: undefined,
       dynamodb: {
