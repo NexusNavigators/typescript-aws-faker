@@ -1,7 +1,7 @@
-import * as index from '../../src/sqs'
+import * as index from '../../src/s3'
 
 test('exports objects', () => {
   expect(index).toStrictEqual(expect.objectContaining({
-    event: expect.any(Object),
+    objectEvent: expect.any(Object),
   }))
 })

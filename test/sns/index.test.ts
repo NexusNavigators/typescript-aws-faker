@@ -1,4 +1,4 @@
-import * as index from '../../src/sqs'
+import * as index from '../../src/sns'
 
 test('exports objects', () => {
   expect(index).toStrictEqual(expect.objectContaining({

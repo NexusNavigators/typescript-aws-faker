@@ -1,7 +1,6 @@
-import { randomUUID } from 'crypto'
+import { randomUUID, createHash } from 'crypto'
 import { SQSRecord, SQSRecordAttributes } from 'aws-lambda'
 import { SQSMessageAttributes } from 'aws-lambda/trigger/sqs'
-import { createHash } from 'crypto'
 import { buildARNString, createARN, PartialArn } from '../account'
 
 export type PartialSQSArn = Omit<PartialArn, 'service'>
@@ -14,9 +13,9 @@ export interface PartialSQSRecord extends Partial<Omit<SQSRecord,
   | 'eventSource'
   | 'eventSourceARN'
 >> {
-  attributes?: Partial<SQSRecordAttributes>;
-  messageAttributes?: SQSMessageAttributes;
-  eventSourceARN: PartialSQSArn;
+  attributes?: Partial<SQSRecordAttributes>
+  messageAttributes?: SQSMessageAttributes
+  eventSourceARN?: PartialSQSArn
 }
 
 export const createSQSRecordAttributes = (
@@ -59,8 +58,7 @@ export const createSQSRecord = <T extends object | number | boolean | string = s
   let body: string
   if (typeof rawBody === 'string') {
     body = rawBody
-  }
-  else {
+  } else {
     body = JSON.stringify(rawBody)
   }
   return {
@@ -71,7 +69,7 @@ export const createSQSRecord = <T extends object | number | boolean | string = s
     messageAttributes: createSQSMessageAttributes(messageAttributes),
     md5OfBody: createHash('md5').update(body).digest('hex'),
     eventSource: 'aws:sqs',
-    eventSourceARN: buildARNString(createARN({ ...eventSourceARN , service: 'sqs' })),
+    eventSourceARN: buildARNString(createARN({ ...eventSourceARN, service: 'sqs' })),
     awsRegion,
   }
 }

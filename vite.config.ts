@@ -8,7 +8,7 @@ export default defineConfig({
   test: {
     coverage: {
       enabled: true,
-      reporter: ['text', 'html', 'lcov'],
+      reporter: ['text', 'html', 'lcov', 'cobertura'],
       include: ['src/**/*'],
       clean: true,
       thresholds: {
@@ -26,5 +26,6 @@ export default defineConfig({
     hookTimeout: testTimeout,
     teardownTimeout: testTimeout,
     pool: 'forks',
+    globals: true,
   },
 })

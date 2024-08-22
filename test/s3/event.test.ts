@@ -1,5 +1,4 @@
 import { randomUUID } from 'crypto'
-import { describe, test, expect } from 'vitest'
 
 import { createRecordBucket, createRecordObject, createRecord, createLambdaEventRecord } from '../../src/s3/event'
 

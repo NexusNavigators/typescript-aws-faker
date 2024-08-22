@@ -1,5 +1,5 @@
 import { randomInt } from 'crypto'
-import { ARN, build } from '@aws-sdk/util-arn-parser'
+import { ARN, build, parse } from '@aws-sdk/util-arn-parser'
 
 export const createAccountId = () => `${randomInt(1e11, 1e12)}`
 
@@ -24,3 +24,5 @@ export const createARN = (
 export const buildARNString = (
   partialArn?: PartialArn,
 ): string => build(createARN(partialArn))
+
+export const parseArnString = (arnString: string) => parse(arnString)

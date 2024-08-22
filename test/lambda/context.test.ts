@@ -1,12 +1,11 @@
 import { randomUUID } from 'crypto'
-import { describe, test, expect } from 'vitest'
 
 import {
   createClientContextClient,
   createClientContextEnv,
   createClientContext,
   createContext,
-} from '../../src/lambda/context.ts'
+} from '../../src/lambda/context'
 import { ClientContextClient, ClientContextEnv, Context } from 'aws-lambda'
 import { ARN } from '@aws-sdk/util-arn-parser'
 import { createAccountId, buildARNString } from '../../src/account'

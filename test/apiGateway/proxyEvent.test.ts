@@ -1,6 +1,5 @@
 import { randomUUID } from 'crypto'
 import { APIGatewayProxyEvent } from 'aws-lambda'
-import { describe, test, expect } from 'vitest'
 import { createAPIGatewayProxyEvent } from '../../src/apiGateway/proxyEvent'
 
 describe('createAPIGatewayProxyEventV2RequestContext', () => {

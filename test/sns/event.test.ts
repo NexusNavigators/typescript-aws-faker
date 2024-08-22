@@ -4,7 +4,6 @@ import { SNSMessage } from 'aws-lambda/trigger/sns'
 import { PartialSnsArn } from '../../src/sns/event'
 import { ARN } from '@aws-sdk/util-arn-parser'
 import { buildARNString } from '../../src/account'
-import { describe, test, expect } from 'vitest'
 
 const { createSnsMessage, createSNSEventRecord } = event
 

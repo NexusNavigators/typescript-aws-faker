@@ -29,8 +29,7 @@ export const createKinesisStreamRecordPayload = <T = KinesisDataType>(
   let data: string
   if (typeof rawData === 'string') {
     data = rawData
-  }
-  else {
+  } else {
     data = Buffer.from(JSON.stringify(rawData ?? {})).toString('base64')
   }
   return {
