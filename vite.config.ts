@@ -8,7 +8,7 @@ export default defineConfig({
   test: {
     coverage: {
       enabled: true,
-      reporter: ['text', 'html', 'lcov', 'cobertura'],
+      reporter: ['text', 'html', 'lcov'],
       include: ['src/**/*'],
       clean: true,
       thresholds: {
