@@ -10,7 +10,7 @@ const resolveRelativePath = (importingFile: string, source: StringLiteral | Lite
     return source
   }
 
-  const withExt = relativePath.replace(/\.ts$/, ext)
+  const withExt = `${relativePath}${ext}`
 
   if (source.type === 'Literal') {
     return jsCodeshift.types.builders.literal(withExt)
