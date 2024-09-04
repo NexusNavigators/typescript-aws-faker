@@ -1,7 +1,7 @@
 import { randomUUID, createHash } from 'crypto'
 import type { SQSRecord, SQSRecordAttributes, SQSMessageAttributes } from 'aws-lambda'
-import type { PartialServiceArn } from '../account/index.ts'
-import { buildARNString, createARN } from '../account/index.ts'
+import type { PartialServiceArn } from '../account/index'
+import { buildARNString, createARN } from '../account/index'
 
 export interface PartialSQSRecord extends Partial<Omit<SQSRecord,
   'attributes'

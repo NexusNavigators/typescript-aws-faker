@@ -1,2 +1,2 @@
-export * as stream from './stream.ts'
-export * as marshaller from './marshaller.ts'
+export * as stream from './stream'
+export * as marshaller from './marshaller'

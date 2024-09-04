@@ -1,1 +1,1 @@
-export * as stream from './stream.ts'
+export * as stream from './stream'
