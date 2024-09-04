@@ -4,8 +4,8 @@ import type {
   KinesisStreamRecord,
   KinesisStreamRecordPayload,
 } from 'aws-lambda'
-import type { PartialServiceArn } from '../account/index.ts'
-import { buildARNString } from '../account/index.ts'
+import type { PartialServiceArn } from '../account/index'
+import { buildARNString } from '../account/index'
 
 export type KinesisDataType = string | object | undefined
 

@@ -1,6 +1,5 @@
 // @ts-check
 import globals from 'globals'
-// eslint-disable-next-line import-x/no-unresolved
 import tslint from 'typescript-eslint'
 import stylistic from '@stylistic/eslint-plugin'
 import importX from 'eslint-plugin-import-x'
@@ -29,11 +28,10 @@ export default [
       '@stylistic/brace-style': ['error', '1tbs'],
       '@stylistic/arrow-parens': ['error', 'always'],
       '@stylistic/comma-dangle': ['error', 'always-multiline'],
-      'import-x/extensions': ['error', { ts: 'ignorePackages' }],
+      'import-x/extensions': ['error', 'never'],
       'import-x/no-named-as-default': 'error',
       'import-x/no-named-as-default-member': 'error',
       'import-x/no-duplicates': 'error',
-      'import-x/no-unresolved': 'error',
     },
   },
 ]

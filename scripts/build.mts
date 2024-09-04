@@ -22,27 +22,28 @@ if (!nodeVersion) {
   throw new Error('Missing engines.node version from package.json')
 }
 
-void build({
-  bundle: false,
-  sourcemap: false,
-  platform: 'node',
-  target: `node${nodeVersion}`,
-  outdir: 'src',
-  format: 'cjs',
-  entryPoints,
-})
-
-void build({
-  bundle: false,
-  sourcemap: false,
-  platform: 'node',
-  target: `node${nodeVersion}`,
-  outdir: 'src',
-  format: 'esm',
-  outExtension: {
-    '.js': '.mjs',
-  },
-  entryPoints,
-})
+await Promise.all([
+  build({
+    bundle: false,
+    sourcemap: false,
+    platform: 'node',
+    target: `node${nodeVersion}`,
+    outdir: 'src',
+    format: 'cjs',
+    entryPoints,
+  }),
+  build({
+    bundle: false,
+    sourcemap: false,
+    platform: 'node',
+    target: `node${nodeVersion}`,
+    outdir: 'src',
+    format: 'esm',
+    outExtension: {
+      '.js': '.mjs',
+    },
+    entryPoints,
+  }),
+])
 
 addJsExtensions(`${rootDir}/src`)

@@ -4,7 +4,7 @@ import type {
   APIGatewayEventRequestContextWithAuthorizer,
 } from 'aws-lambda'
 import { randomUUID } from 'crypto'
-import { createAccountId } from '../account/index.ts'
+import { createAccountId } from '../account/index'
 
 export const createAPIGatewayEventIdentity = (
   {

@@ -1,1 +1,1 @@
-export * as logs from './logs.ts'
+export * as logs from './logs'

@@ -1,5 +1,3 @@
-// @ts-expect-error moduleResolution:nodenext issue 54523
-// eslint-disable-next-line import-x/no-unresolved
 import { defineConfig } from 'vitest/config'
 import inspector from 'inspector'
 // If we are debugging then extend the timeout to max value, otherwise use the default.

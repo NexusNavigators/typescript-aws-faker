@@ -1,1 +1,1 @@
-export * as event from './event.ts'
+export * as event from './event'
