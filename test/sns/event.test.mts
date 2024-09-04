@@ -1,8 +1,9 @@
 import { randomUUID } from 'crypto'
-import { event } from '../../src/sns'
-import { SNSMessage } from 'aws-lambda/trigger/sns'
-import { ARN } from '@aws-sdk/util-arn-parser'
-import { buildARNString, PartialServiceArn } from '../../src/account'
+import { event } from '../../src/sns/index.ts'
+import type { SNSMessage } from 'aws-lambda'
+import type { ARN } from '@aws-sdk/util-arn-parser'
+import type { PartialServiceArn } from '../../src/account/index.ts'
+import { buildARNString } from '../../src/account/index.ts'
 
 const { createSnsMessage, createSNSEventRecord } = event
 

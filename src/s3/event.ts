@@ -1,6 +1,7 @@
 import { randomUUID } from 'crypto'
-import { S3EventRecord } from 'aws-lambda'
-import { buildARNString, PartialServiceArn } from '../account'
+import type { S3EventRecord } from 'aws-lambda'
+import type { PartialServiceArn } from '../account/index.ts'
+import { buildARNString } from '../account/index.ts'
 
 export type S3RecordEventType = 'TestEvent'
   | 'ObjectCreated:Put'

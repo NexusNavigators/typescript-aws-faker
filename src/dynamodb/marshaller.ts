@@ -1,7 +1,6 @@
-import { AttributeValue } from '@aws-sdk/client-dynamodb'
-import { marshall, unmarshall, marshallOptions, unmarshallOptions } from '@aws-sdk/util-dynamodb'
-
-export * as stream from './stream'
+import type { AttributeValue } from '@aws-sdk/client-dynamodb'
+import type { marshallOptions, unmarshallOptions } from '@aws-sdk/util-dynamodb'
+import { marshall, unmarshall } from '@aws-sdk/util-dynamodb'
 
 export type AttributeMap = Record<string, AttributeValue>
 

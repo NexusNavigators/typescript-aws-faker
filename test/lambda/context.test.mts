@@ -5,10 +5,10 @@ import {
   createClientContextEnv,
   createClientContext,
   createContext,
-} from '../../src/lambda/context'
-import { ClientContextClient, ClientContextEnv, Context } from 'aws-lambda'
-import { ARN } from '@aws-sdk/util-arn-parser'
-import { createAccountId, buildARNString } from '../../src/account'
+} from '../../src/lambda/context.ts'
+import type { ClientContextClient, ClientContextEnv, Context } from 'aws-lambda'
+import type { ARN } from '@aws-sdk/util-arn-parser'
+import { createAccountId, buildARNString } from '../../src/account/index.ts'
 
 const defaultClientContextClient: ClientContextClient = {
   installationId: '',

@@ -1,12 +1,13 @@
 import { randomUUID } from 'crypto'
+import type {
+  APIGatewayProxyEventV2RequestContext,
+  APIGatewayProxyEventV2RequestContextHttp } from '../../src/apiGateway/proxyEventV2.ts'
 import {
   createApiGatewayProxyEventV2,
   createAPIGatewayProxyEventV2RequestContextHttp,
   createAPIGatewayProxyEventV2RequestContext,
-  APIGatewayProxyEventV2RequestContext,
-  APIGatewayProxyEventV2RequestContextHttp,
-} from '../../src/apiGateway/proxyEventV2'
-import { APIGatewayProxyEventV2 } from 'aws-lambda'
+} from '../../src/apiGateway/proxyEventV2.ts'
+import type { APIGatewayProxyEventV2 } from 'aws-lambda'
 
 const expectDefaultHttp: APIGatewayProxyEventV2RequestContextHttp = {
   method: 'GET',

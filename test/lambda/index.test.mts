@@ -1,7 +1,7 @@
-import * as index from '../../src/s3'
+import * as index from '../../src/lambda/index.ts'
 
 test('exports objects', () => {
   expect(index).toStrictEqual(expect.objectContaining({
-    objectEvent: expect.any(Object),
+    context: expect.any(Object),
   }))
 })

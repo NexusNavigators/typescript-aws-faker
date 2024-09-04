@@ -1,5 +1,6 @@
 import { randomInt } from 'crypto'
-import { ARN, build, parse } from '@aws-sdk/util-arn-parser'
+import type { ARN } from '@aws-sdk/util-arn-parser'
+import { build, parse } from '@aws-sdk/util-arn-parser'
 
 export const createAccountId = () => `${randomInt(1e11, 1e12)}`
 

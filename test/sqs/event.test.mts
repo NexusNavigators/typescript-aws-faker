@@ -1,6 +1,6 @@
-import { SQSMessageAttributes } from 'aws-lambda/trigger/sqs'
-import { buildARNString, createAccountId } from '../../src/account'
-import { createSQSRecordAttributes, createSQSMessageAttributes, createSQSRecord } from '../../src/sqs/event'
+import type { SQSMessageAttributes } from 'aws-lambda'
+import { buildARNString, createAccountId } from '../../src/account/index.ts'
+import { createSQSRecordAttributes, createSQSMessageAttributes, createSQSRecord } from '../../src/sqs/event.ts'
 import { createHash, randomUUID } from 'crypto'
 
 describe('createSQSRecordAttributes', () => {

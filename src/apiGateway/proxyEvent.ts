@@ -1,8 +1,6 @@
-import { APIGatewayProxyEvent } from 'aws-lambda'
-import {
-  APIGatewayEventDefaultAuthorizerContext,
-} from 'aws-lambda/common/api-gateway'
-import { createAPIGatewayEventRequestContextWithAuthorizer, PartialAuthorizer } from './baseEvent'
+import type { APIGatewayProxyEvent, APIGatewayEventDefaultAuthorizerContext } from 'aws-lambda'
+import type { PartialAuthorizer } from './baseEvent.ts'
+import { createAPIGatewayEventRequestContextWithAuthorizer } from './baseEvent.ts'
 
 export type PartialProxyEvent =
   Partial<Omit<APIGatewayProxyEvent, 'requestContext'>>

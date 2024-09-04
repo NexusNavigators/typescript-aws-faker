@@ -5,7 +5,7 @@ import {
   createRecordObject,
   createRecord,
   createLambdaEventRecord,
-} from '../../src/s3/event'
+} from '../../src/s3/event.ts'
 
 describe('createRecordBucket', () => {
   test('will set defaults', () => {

@@ -1,10 +1,10 @@
 import { randomUUID } from 'crypto'
-import { DynamoDBRecord } from 'aws-lambda'
-import { AttributeValue, StreamRecord } from 'aws-lambda/trigger/dynamodb-stream'
+import type { DynamoDBRecord, AttributeValue, StreamRecord } from 'aws-lambda'
 
-import { marshallOptions } from '@aws-sdk/util-dynamodb'
-import { buildARNString, PartialServiceArn } from '../account'
-import { marshalItem } from './marshaller'
+import type { marshallOptions } from '@aws-sdk/util-dynamodb'
+import type { PartialServiceArn } from '../account/index.ts'
+import { buildARNString } from '../account/index.ts'
+import { marshalItem } from './marshaller.ts'
 
 export interface CustomStreamRecord<
   KeysType extends Record<string, any>,

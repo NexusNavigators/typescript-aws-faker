@@ -1,5 +1,5 @@
 import { randomUUID } from 'crypto'
-import { marshalItem, unmarshalItem } from '../../src/dynamodb/marshaller'
+import { marshalItem, unmarshalItem } from '../../src/dynamodb/marshaller.ts'
 import { marshall, unmarshall } from '@aws-sdk/util-dynamodb'
 
 vi.mock('@aws-sdk/util-dynamodb')

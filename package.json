@@ -106,8 +106,9 @@
     "aws-lambda"
   ],
   "scripts": {
-    "prepublishOnly": "npx tsx esBuild.mts && npx tsc --project tsconfig.build.json",
-    "lint": "eslint . --cache",
+    "clean": "tsx scripts/clean.mts",
+    "prepublishOnly": "npx tsx scripts/build.mts",
+    "lint": "eslint --cache",
     "postlint": "tsc",
     "pretest": "npm run lint",
     "test": "vitest run"
@@ -121,6 +122,7 @@
     "@aws-sdk/util-dynamodb": "^3.499.0",
     "@eslint/js": "^9.9.0",
     "@stylistic/eslint-plugin": "^2.6.4",
+    "@types/jscodeshift": "^0.11.11",
     "@types/node": "^22.4.2",
     "@vitest/coverage-v8": "^2.0.5",
     "conventional-changelog-conventionalcommits": "^8.0.0",
@@ -128,6 +130,7 @@
     "eslint": "^9.9.0",
     "eslint-plugin-import-x": "^3.1.0",
     "globals": "^15.9.0",
+    "jscodeshift": "^17.0.0",
     "semantic-release": "^24.1.0",
     "tsx": "^4.17.0",
     "typescript": "^5.5.4",
