@@ -1,8 +1,8 @@
 import { randomUUID } from 'crypto'
-import { SNSEventRecord } from 'aws-lambda'
-import { SNSMessage } from 'aws-lambda/trigger/sns'
+import type { SNSEventRecord, SNSMessage } from 'aws-lambda'
 
-import { buildARNString, PartialServiceArn } from '../account'
+import type { PartialServiceArn } from '../account/index.ts'
+import { buildARNString } from '../account/index.ts'
 
 export type PartialSNSMessage = Omit<Partial<SNSMessage>, 'Message' | 'TopicArn'> & {
   Message?: string | object

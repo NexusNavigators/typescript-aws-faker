@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto'
-import { APIGatewayProxyEvent } from 'aws-lambda'
-import { createAPIGatewayProxyEvent } from '../../src/apiGateway/proxyEvent'
+import type { APIGatewayProxyEvent } from 'aws-lambda'
+import { createAPIGatewayProxyEvent } from '../../src/apiGateway/proxyEvent.ts'
 
 describe('createAPIGatewayProxyEventV2RequestContext', () => {
   test('will set defaults', () => {

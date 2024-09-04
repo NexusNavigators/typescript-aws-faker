@@ -1,7 +1,7 @@
-import * as index from '../../src/cloudWatch'
+import * as index from '../../src/kinesis/index.ts'
 
 test('exports objects', () => {
   expect(index).toStrictEqual(expect.objectContaining({
-    logs: expect.any(Object),
+    stream: expect.any(Object),
   }))
 })

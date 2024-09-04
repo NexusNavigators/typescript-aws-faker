@@ -1,25 +1,26 @@
 import { randomUUID } from 'crypto'
-import {
+import type {
   KinesisStreamEvent,
   KinesisStreamRecord,
   KinesisStreamRecordPayload,
 } from 'aws-lambda'
-import { buildARNString, PartialServiceArn } from '../account'
+import type { PartialServiceArn } from '../account/index.ts'
+import { buildARNString } from '../account/index.ts'
 
-export type KinesisDataType = string | any
+export type KinesisDataType = string | object | undefined
 
-export interface PartialKinesisStreamRecordPayload<T = KinesisDataType>
+export interface PartialKinesisStreamRecordPayload<T extends KinesisDataType = KinesisDataType>
   extends Partial<Omit<KinesisStreamRecordPayload, 'data'>> {
   data?: T
 }
 
-export interface PartialKinesisStreamRecord<T = KinesisDataType>
+export interface PartialKinesisStreamRecord<T extends KinesisDataType = KinesisDataType>
   extends Partial<Omit<KinesisStreamRecord, 'kinesis' | 'eventSource' | 'eventName' | 'eventSourceARN'>> {
   kinesis?: PartialKinesisStreamRecordPayload<T>
   eventSource?: PartialServiceArn
 }
 
-export const createKinesisStreamRecordPayload = <T = KinesisDataType>(
+export const createKinesisStreamRecordPayload = <T extends KinesisDataType = KinesisDataType>(
   {
     approximateArrivalTimestamp = Math.floor(Date.now() / 1e3),
     data: rawData,
@@ -43,7 +44,7 @@ export const createKinesisStreamRecordPayload = <T = KinesisDataType>(
   }
 }
 
-export const createKinesisStreamRecord = <T = KinesisDataType>(
+export const createKinesisStreamRecord = <T extends KinesisDataType = KinesisDataType>(
   {
     awsRegion = 'us-east-1',
     eventID = randomUUID(),
@@ -65,7 +66,7 @@ export const createKinesisStreamRecord = <T = KinesisDataType>(
   }
 }
 
-export const createKinesisStreamEvent = <T = KinesisDataType>(
+export const createKinesisStreamEvent = <T extends KinesisDataType = KinesisDataType>(
   records: PartialKinesisStreamRecord<T>[] = [],
 ): KinesisStreamEvent => {
   return {

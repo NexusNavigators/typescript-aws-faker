@@ -1,7 +1,8 @@
-import { ARN, validate, build } from '@aws-sdk/util-arn-parser'
+import type { ARN } from '@aws-sdk/util-arn-parser'
+import { validate, build } from '@aws-sdk/util-arn-parser'
 import { randomUUID } from 'crypto'
 import { describe, test, expect } from 'vitest'
-import { createAccountId, createARN, buildARNString, parseArnString } from '../../src/account'
+import { createAccountId, createARN, buildARNString, parseArnString } from '../../src/account/index.ts'
 
 describe('createAccountId', () => {
   test('createAccountId will create a valid accountId', () => {

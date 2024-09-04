@@ -15,6 +15,7 @@
     "rootDir": ".",
     "skipLibCheck": true,
     "noEmit": true,
-    "types": ["vitest/globals"]
+    "allowImportingTsExtensions": true,
+    "types": ["vitest/globals"],
   }
 }

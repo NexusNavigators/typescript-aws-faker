@@ -1,7 +1,10 @@
+import type {
+  APIGatewayEventDefaultAuthorizerContext,
+  APIGatewayEventIdentity,
+  APIGatewayEventRequestContextWithAuthorizer,
+} from 'aws-lambda'
 import { randomUUID } from 'crypto'
-import { APIGatewayEventIdentity } from 'aws-lambda'
-import { APIGatewayEventRequestContextWithAuthorizer } from 'aws-lambda/common/api-gateway'
-import { createAccountId } from '../account'
+import { createAccountId } from '../account/index.ts'
 
 export const createAPIGatewayEventIdentity = (
   {
@@ -39,14 +42,14 @@ export const createAPIGatewayEventIdentity = (
   userArn,
 })
 
-export type PartialAuthorizer<TAuthorizerContext> =
+export type PartialAuthorizer<TAuthorizerContext extends APIGatewayEventDefaultAuthorizerContext = undefined> =
   Partial<Omit<APIGatewayEventRequestContextWithAuthorizer<TAuthorizerContext>, 'authorizer' | 'identity'>>
   & {
     authorizer: TAuthorizerContext
     identity?: Partial<APIGatewayEventIdentity>
   }
 
-export const createAPIGatewayEventRequestContextWithAuthorizer = <TAuthorizerContext>(
+export const createAPIGatewayEventRequestContextWithAuthorizer = <TAuthorizerContext extends APIGatewayEventDefaultAuthorizerContext = undefined>(
   {
     accountId = createAccountId(),
     apiId = '1.0',

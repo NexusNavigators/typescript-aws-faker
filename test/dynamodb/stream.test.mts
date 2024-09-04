@@ -1,10 +1,11 @@
 import { randomUUID } from 'crypto'
-import { buildARNString, createAccountId, PartialServiceArn } from '../../src/account'
+import type { PartialServiceArn } from '../../src/account/index.ts'
+import { buildARNString, createAccountId } from '../../src/account/index.ts'
 import {
   createStreamRecord,
   createDynamoDBRecord, createCustomStreamRecord,
-} from '../../src/dynamodb/stream'
-import { DynamoDBRecord, StreamRecord } from 'aws-lambda'
+} from '../../src/dynamodb/stream.ts'
+import type { DynamoDBRecord, StreamRecord } from 'aws-lambda'
 import { describe, test, expect } from 'vitest'
 
 describe('createCustomStreamRecord', () => {

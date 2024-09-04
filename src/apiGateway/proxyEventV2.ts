@@ -1,5 +1,5 @@
-import { APIGatewayProxyEventV2 } from 'aws-lambda'
-import { createAccountId } from '../account'
+import type { APIGatewayProxyEventV2 } from 'aws-lambda'
+import { createAccountId } from '../account/index.ts'
 
 export type APIGatewayProxyEventV2RequestContext = APIGatewayProxyEventV2['requestContext']
 export type APIGatewayProxyEventV2RequestContextHttp = APIGatewayProxyEventV2RequestContext['http']

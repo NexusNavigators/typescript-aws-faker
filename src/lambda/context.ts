@@ -1,11 +1,12 @@
-import {
+import type {
   ClientContext,
   ClientContextClient,
   ClientContextEnv,
   Context,
 } from 'aws-lambda'
 import { randomUUID } from 'crypto'
-import { buildARNString, PartialServiceArn } from '../account'
+import type { PartialServiceArn } from '../account/index.ts'
+import { buildARNString } from '../account/index.ts'
 
 export const createClientContextClient = (
   {

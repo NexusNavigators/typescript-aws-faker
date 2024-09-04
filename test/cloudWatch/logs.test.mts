@@ -1,5 +1,5 @@
 import { randomUUID } from 'crypto'
-import { CloudWatchLogsDecodedData, CloudWatchLogsLogEvent } from 'aws-lambda'
+import type { CloudWatchLogsDecodedData, CloudWatchLogsLogEvent } from 'aws-lambda'
 import zlib from 'zlib'
 import { describe, test, expect } from 'vitest'
 
@@ -9,7 +9,7 @@ import {
   createCloudWatchLogsLogEvent,
   gunzipCloudWatchLogsDecodedData,
   gzipCloudWatchLogsDecodedData,
-} from '../../src/cloudWatch/logs'
+} from '../../src/cloudWatch/logs.ts'
 
 const defaultMessage: CloudWatchLogsLogEvent = {
   id: '3195310660696698337880902507980421114328961542429EXAMPLE',

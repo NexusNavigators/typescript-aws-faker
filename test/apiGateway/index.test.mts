@@ -1,4 +1,4 @@
-import * as index from '../../src/apiGateway'
+import * as index from '../../src/apiGateway/index.ts'
 
 test('exports objects', () => {
   expect(index).toStrictEqual(expect.objectContaining({

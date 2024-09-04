@@ -1,11 +1,12 @@
 import { randomUUID } from 'crypto'
 
+import type {
+  PartialKinesisStreamRecordPayload } from '../../src/kinesis/stream.ts'
 import {
   createKinesisStreamRecordPayload,
-  createKinesisStreamRecord,
-  PartialKinesisStreamRecordPayload, createKinesisStreamEvent,
-} from '../../src/kinesis/stream'
-import { buildARNString, createARN } from '../../src/account'
+  createKinesisStreamRecord, createKinesisStreamEvent,
+} from '../../src/kinesis/stream.ts'
+import { buildARNString, createARN } from '../../src/account/index.ts'
 import { describe, test, expect } from 'vitest'
 
 const generateExpectedPayload = (

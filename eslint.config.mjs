@@ -1,5 +1,7 @@
+// @ts-check
 import globals from 'globals'
-import tseslint from 'typescript-eslint'
+// eslint-disable-next-line import-x/no-unresolved
+import tslint from 'typescript-eslint'
 import stylistic from '@stylistic/eslint-plugin'
 import importX from 'eslint-plugin-import-x'
 
@@ -15,7 +17,7 @@ export default [
       },
     },
   },
-  ...tseslint.configs.recommended,
+  ...tslint.configs.strict,
   stylistic.configs['recommended-flat'],
   {
     plugins: {
@@ -23,12 +25,15 @@ export default [
     },
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/consistent-type-imports': 'error',
       '@stylistic/brace-style': ['error', '1tbs'],
+      '@stylistic/arrow-parens': ['error', 'always'],
       '@stylistic/comma-dangle': ['error', 'always-multiline'],
       'import-x/extensions': ['error', { ts: 'ignorePackages' }],
       'import-x/no-named-as-default': 'error',
       'import-x/no-named-as-default-member': 'error',
       'import-x/no-duplicates': 'error',
+      'import-x/no-unresolved': 'error',
     },
   },
 ]
