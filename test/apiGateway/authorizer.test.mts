@@ -3,10 +3,13 @@ import type {
 } from '../../src/apiGateway/authorizer.ts'
 import {
   createClientCertificate,
-  createRequestAuthorizerEvent, createTokenAuthorizerEvent,
+  createRequestAuthorizerEvent,
+  createTokenAuthorizerEvent,
 } from '../../src/apiGateway/authorizer.ts'
-import type { PartialArn } from '../../src/account/index.ts'
-import { buildARNString } from '../../src/account/index.ts'
+import {
+  type PartialArn,
+  buildARNString,
+} from '../../src/account/index.ts'
 
 describe('createRequestAuthorizerEvent', () => {
   test('should create event with minimal params', () => {
